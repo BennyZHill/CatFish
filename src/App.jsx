@@ -37,7 +37,7 @@ import React, {useState, useEffect} from 'react'
 const url = `https://api.thecatapi.com/v1/images/search?limit=6`;
 
 function App(){
-  const [catUrl, setCatUrl]= useState(``);
+  // const [catUrl, setCatUrl]= useState(``);
 
   //add by Pui at 2021/08/05 3:30pm
   const [catItems, setCatItems] = useState([]); 
@@ -66,21 +66,21 @@ function App(){
 
   }
 
-  const getCat = () => {
-    console.log(`hello World`);
-    fetch(url)
-    .then((res)=>res.json())
-    .then((cats)=>{
-      console.log(`Cats: `, cats);
-      const catUrl = cats[0].url;
+  // const getCat = () => {
+  //   console.log(`hello World`);
+  //   fetch(url)
+  //   .then((res)=>res.json())
+  //   .then((cats)=>{
+  //     console.log(`Cats: `, cats);
+  //     const catUrl = cats[0].url;
 
-      setCatUrl(catUrl);
-    })
-    .catch((error)=>{
-      console.log(`Error: `, error);
-    });
-  }
-  console.log(`Cat URL: `, catUrl);
+  //     setCatUrl(catUrl);
+  //   })
+  //   .catch((error)=>{
+  //     console.log(`Error: `, error);
+  //   });
+  // }
+  // console.log(`Cat URL: `, catUrl);
 
  return(
   <div className="home-page">
@@ -88,7 +88,7 @@ function App(){
   <h2>Picking the best partner for the job</h2>
   <div>
     <div className="home-image"></div>
-    <div className="products">
+    {/* <div className="products">
       <div><img src={catUrl} alt=""/>
         <button onClick={getCat}>New cat</button>
         <button className="Add"></button>
@@ -107,7 +107,7 @@ function App(){
       </div>
       <div>box6
       <button className="Add"></button>
-      </div>
+      </div> */}
 
       <div className="App">
           {catItems.map(item =>(
@@ -119,7 +119,7 @@ function App(){
       </div>
     </div>
   </div>
-</div>
+// </div>
  );
 
 
