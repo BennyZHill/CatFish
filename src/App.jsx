@@ -34,7 +34,7 @@ import React, {useState, useEffect} from 'react'
 // }
 // const apiKey = `1ef81c01-f0b1-4971-9655-2017bd4c6bfc`;
 
-const url = `https://api.thecatapi.com/v1/images/search`;
+const url = `https://api.thecatapi.com/v1/images/search?limit=6`;
 
 function App(){
   const [catUrl, setCatUrl]= useState(``);
@@ -43,6 +43,7 @@ function App(){
   const [catItems, setCatItems] = useState([]); 
   const [isLoaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const [url, setUrl] = useState();
 
   //add by Pui at 2021/08/05 3:57pm
   useEffect(() =>  {
@@ -52,10 +53,12 @@ function App(){
 
   const getRead = async() =>{
     try {
-    const response  = await fetch('https://api.thecatapi.com/v1/breeds')
+    //const response  = await fetch('https://api.thecatapi.com/v1/breeds')
+    const response  = await fetch('https://api.thecatapi.com/v1/images/search?limit=6')
     const data = await response.json()
       setLoaded(true)
       setCatItems(data)
+
     } catch (error) {
       setError(true);
       console.log(error);
@@ -63,21 +66,21 @@ function App(){
 
   }
 
-  // const getCat = () => {
-  //   console.log(`hello World`);
-  //   fetch(url)
-  //   .then((res)=>res.json())
-  //   .then((cats)=>{
-  //     console.log(`Cats: `, cats);
-  //     const catUrl = cats[0].url;
+  const getCat = () => {
+    console.log(`hello World`);
+    fetch(url)
+    .then((res)=>res.json())
+    .then((cats)=>{
+      console.log(`Cats: `, cats);
+      const catUrl = cats[0].url;
 
-  //     setCatUrl(catUrl);
-  //   })
-  //   .catch((error)=>{
-  //     console.log(`Error: `, error);
-  //   });
-  // }
-  // console.log(`Cat URL: `, catUrl);
+      setCatUrl(catUrl);
+    })
+    .catch((error)=>{
+      console.log(`Error: `, error);
+    });
+  }
+  console.log(`Cat URL: `, catUrl);
 
  return(
   <div className="home-page">
@@ -86,10 +89,10 @@ function App(){
   <div>
     <div className="home-image"></div>
     <div className="products">
-      {/* <div><img src={catUrl} alt=""/>
-        <button on onClick={}>New cat</button>
+      <div><img src={catUrl} alt=""/>
+        <button onClick={getCat}>New cat</button>
         <button className="Add"></button>
-      </div> */}
+      </div> 
       <div>box2
       <button className="Add"></button>
       </div>
@@ -107,13 +110,12 @@ function App(){
       </div>
 
       <div className="App">
-        <ul>
           {catItems.map(item =>(
-            <li key={item.id}>
-              Name: {item.name}
-            </li>
+            <div key={item.id}>
+              <img src={item.url} alt="{item.name}"/>
+              <button className="Add">Add</button>
+            </div>
           ))}
-        </ul>
       </div>
     </div>
   </div>
