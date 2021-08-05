@@ -42,32 +42,42 @@ function App(){
   //add by Pui at 2021/08/05 3:30pm
   const [catItems, setCatItems] = useState([]); 
   const [isLoaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
 
-  //add by Pui at 2021/08/05 3:30pm
+  //add by Pui at 2021/08/05 3:57pm
   useEffect(() =>  {
-    fetch('https://api.thecatapi.com/v1/breeds')
-    .then(res=>res.json())
-    .then(json=>{
+    //getCat()
+    getRead()
+  }, [])
+
+  const getRead = async() =>{
+    try {
+    const response  = await fetch('https://api.thecatapi.com/v1/breeds')
+    const data = await response.json()
       setLoaded(true)
-      setCatItems(json)
-    })
-  })
+      setCatItems(data)
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
 
-  const getCat = () => {
-    console.log(`hello World`);
-    fetch(url)
-    .then((res)=>res.json())
-    .then((cats)=>{
-      console.log(`Cats: `, cats);
-      const catUrl = cats[0].url;
-
-      setCatUrl(catUrl);
-    })
-    .catch((error)=>{
-      console.log(`Error: `, error);
-    });
   }
-  console.log(`Cat URL: `, catUrl);
+
+  // const getCat = () => {
+  //   console.log(`hello World`);
+  //   fetch(url)
+  //   .then((res)=>res.json())
+  //   .then((cats)=>{
+  //     console.log(`Cats: `, cats);
+  //     const catUrl = cats[0].url;
+
+  //     setCatUrl(catUrl);
+  //   })
+  //   .catch((error)=>{
+  //     console.log(`Error: `, error);
+  //   });
+  // }
+  // console.log(`Cat URL: `, catUrl);
 
  return(
   <div className="home-page">
@@ -76,10 +86,10 @@ function App(){
   <div>
     <div className="home-image"></div>
     <div className="products">
-      <div><img src={catUrl} alt=""/>
-        <button on onClick={getCat}>New cat</button>
+      {/* <div><img src={catUrl} alt=""/>
+        <button on onClick={}>New cat</button>
         <button className="Add"></button>
-      </div>
+      </div> */}
       <div>box2
       <button className="Add"></button>
       </div>
