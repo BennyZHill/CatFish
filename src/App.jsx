@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 //  App = () => {
 //   return (
@@ -39,7 +39,19 @@ const url = `https://api.thecatapi.com/v1/images/search`;
 function App(){
   const [catUrl, setCatUrl]= useState(``);
 
- 
+  //add by Pui at 2021/08/05 3:30pm
+  const [catItems, setCatItems] = useState([]); 
+  const [isLoaded, setLoaded] = useState(false);
+
+  //add by Pui at 2021/08/05 3:30pm
+  useEffect(() =>  {
+    fetch('https://api.thecatapi.com/v1/breeds')
+    .then(res=>res.json())
+    .then(json=>{
+      setLoaded(true)
+      setCatItems(json)
+    })
+  })
 
   const getCat = () => {
     console.log(`hello World`);
@@ -82,6 +94,16 @@ function App(){
       </div>
       <div>box6
       <button className="Add"></button>
+      </div>
+
+      <div className="App">
+        <ul>
+          {catItems.map(item =>(
+            <li key={item.id}>
+              Name: {item.name}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>
