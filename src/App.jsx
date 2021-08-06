@@ -104,13 +104,9 @@ function App() {
   };
 
   const renderProducts = () =>(
-          <>
-           <h1 className='title'>CAT-FISHER</h1>
-           <h2 className='subtitle'>Picking the right partner for the job</h2>
-           <div className='home-img'></div>
-           <div className='products'>
+          <>          
             {products.map((product, idx) =>(
-              <div className="product" key={idx}>
+              <div className='product' key={idx}>
                 <img src={product.image} alt={product.id}/>
                 <h3>{product.cost}</h3>
                 <button onClick={()=>addToCart(setProducts)}>
@@ -118,8 +114,7 @@ function App() {
                   </button>
               </div>
             ))}
-            </div>
-            </>
+          </>
  )
 
   const addToCart = (product) =>{
@@ -130,12 +125,7 @@ function App() {
   return (
 
     <div className='wrapper'>
-
-    <header>
-      <button>Go to Cart</button>
-    </header>
-
-    {/* <div className='bubbles'>
+    <div className='bubbles'>
       <div className='bubble1'></div>
       <div className='bubble2'></div>
       <div className='bubble3'></div>
@@ -146,14 +136,23 @@ function App() {
     <h1 className='title'>CAT-FISHER</h1>
     <h2 className='subtitle'>Picking the right partner for the job</h2>
     <div className='home-img'></div>
-  <div className='proudcts'>
-    {items.map(data => (
-        <img src={data.url} alt='cat' />
-    ))}
-    </div>
-  </div> */}    
+    
+    {/* Or use nav bar */}
+    <header>
+      <button>Go to Cart</button>
+    </header>
 
-   {page === 'products' && renderProducts()}     
+    <div className='products'></div>
+    {page === 'products' && renderProducts()}
+
+    {/* Fetch data from API */}
+      {/* 
+    <div className='proudcts'>
+      {items.map(data => (
+          <img src={data.url} alt='cat' />
+      ))}
+      </div>
+    </div> */}           
 
   </div> 
   
