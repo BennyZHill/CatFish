@@ -92,12 +92,12 @@ function App() {
 
   const fetchItems = async () => {
     try {
-    const data = await fetch(
-      'https://api.thecatapi.com/v1/images/search?limit=6'
-    );
-    const items = await data.json();
-    console.log(items);
-    setItems(items);
+      const data = await fetch(
+        'https://api.thecatapi.com/v1/images/search?limit=6'
+      );
+      const items = await data.json();
+      console.log(items);
+      setItems(items);
     } catch (error) {
       console.log(error);
     }
@@ -128,20 +128,41 @@ function App() {
   }
 
   return (
-    <div className="home-page">
-      <header>
-        {/* Use Nav Bar later */}
-        <button>Go to Cart</button>
-      </header>
-      {page === 'products' && renderProducts()}
-      
-      {/* <div>
-        {items.map(data => (
-            <img src={data.url} alt='cat' />
-        ))}     
-        </div>*/}
 
+    <div className='wrapper'>
+    <div className='bubbles'>
+      <div className='bubble1'></div>
+      <div className='bubble2'></div>
+      <div className='bubble3'></div>
+      <div className='bubble4'></div>
+      <div className='bubble5'></div>
+      <div className='bubble6'></div>
     </div>
+    <h1 className='title'>CAT-FISHER</h1>
+    <h2 className='subtitle'>Picking the right partner for the job</h2>
+    <div className='home-img'></div>
+  <div className='proudcts'>
+    {items.map(data => (
+        <img src={data.url} alt='cat' />
+    ))}
+    </div>
+  </div>
+
+    
+    // <div className="wrapper">
+    //   <header>
+    //     {/* Use Nav Bar later */}
+    //     <button>Go to Cart</button>
+    //   </header>
+    //   {page === 'products' && renderProducts()}
+      
+    //   <div className='bubbles'>
+    //     {items.map(data => (
+    //         <img src={data.url} alt='cat' />
+    //     ))}     
+    //   </div>
+
+    // </div>
   );
 };
 
@@ -182,6 +203,7 @@ export default App;
 // }
 // const apiKey = `1ef81c01-f0b1-4971-9655-2017bd4c6bfc`;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const url = `https://api.thecatapi.com/v1/images/search?limit=6`;
 
@@ -287,6 +309,8 @@ function App(){
 
 export default App;
 =======
+=======
+>>>>>>> 0d674966b4fcf5f4b5560d30a5c3c1ad731119f8
 // const url = `https://api.thecatapi.com/v1/images/search?limit=6`;
 
 
