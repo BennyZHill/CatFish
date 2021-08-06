@@ -80,13 +80,6 @@ z-index: 2;
 }
 .subtitle {
 
-<<<<<<< HEAD
-.products{
- 
- 
-  width: 500px;
-  height: 500px;
-=======
 position: absolute;
 width: 650px;
 transform: translate(-50%, -50%);
@@ -134,5 +127,4 @@ img {
   border-radius: 25px;
   box-shadow: 0 0 12px black;
   z-index: 3;
->>>>>>> 0d674966b4fcf5f4b5560d30a5c3c1ad731119f8
 }
