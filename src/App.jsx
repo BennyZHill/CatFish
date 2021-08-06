@@ -104,17 +104,17 @@ function App() {
   };
 
   const renderProducts = () =>(
-          <>          
-            {products.map((product, idx) =>(
-              <div className='product' key={idx}>
-                <img src={product.image} alt={product.id}/>
-                <h3>{product.cost}</h3>
-                <button onClick={()=>addToCart(setProducts)}>
+    <>          
+      {products.map((product, idx) =>(
+          <div className='product' key={idx}>
+            <img src={product.image} alt={product.id}/>
+            <h3>{product.cost}</h3>
+            <button onClick={()=>addToCart(product)}>
                   Add to Cart
-                  </button>
-              </div>
-            ))}
-          </>
+            </button>
+            </div>
+        ))}
+    </>
  )
 
   const addToCart = (product) =>{
