@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useStatediv} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css'
 
 function App() {
@@ -105,12 +105,13 @@ function App() {
 
   const renderProducts = () =>(
           <>
-           <h1>Cat-Fisher</h1>
-           <h2>Picking the best partner for the job</h2>
-           <div className="products">
+           <h1 className='title'>CAT-FISHER</h1>
+           <h2 className='subtitle'>Picking the right partner for the job</h2>
+           <div className='home-img'></div>
+           <div className='products'>
             {products.map((product, idx) =>(
               <div className="product" key={idx}>
-                <img src={product.image} alt={product.id} height='200px' width='200px'/>
+                <img src={product.image} alt={product.id}/>
                 <h3>{product.cost}</h3>
                 <button onClick={()=>addToCart(setProducts)}>
                   Add to Cart
@@ -119,7 +120,6 @@ function App() {
             ))}
             </div>
             </>
-
  )
 
   const addToCart = (product) =>{
@@ -130,7 +130,12 @@ function App() {
   return (
 
     <div className='wrapper'>
-    <div className='bubbles'>
+
+    <header>
+      <button>Go to Cart</button>
+    </header>
+
+    {/* <div className='bubbles'>
       <div className='bubble1'></div>
       <div className='bubble2'></div>
       <div className='bubble3'></div>
@@ -146,23 +151,12 @@ function App() {
         <img src={data.url} alt='cat' />
     ))}
     </div>
-  </div>
+  </div> */}    
 
-    
-    // <div className="wrapper">
-    //   <header>
-    //     {/* Use Nav Bar later */}
-    //     <button>Go to Cart</button>
-    //   </header>
-    //   {page === 'products' && renderProducts()}
-      
-    //   <div className='bubbles'>
-    //     {items.map(data => (
-    //         <img src={data.url} alt='cat' />
-    //     ))}     
-    //   </div>
+   {page === 'products' && renderProducts()}     
 
-    // </div>
+  </div> 
+  
   );
 };
 
