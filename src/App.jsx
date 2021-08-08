@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
+//import './App.css'
 import Products from './components/Products'
 import Cart from './components/Cart'
+import Payment from './components/Payment'
+import CatInfo from './components/CatInfo'
 
 const PAGE_PRODUCTS = 'products'
 const PAGE_CART = 'cart'
-const API_URL = 'https://api.thecatapi.com/v1/images/search?limit=67'
-//const API_URL = 'https://api.thecatapi.com/v1/breeds'
+const PAGE_PAYMENT = 'payment'
+const PAGE_CATINFO = 'catinfo'
+
+const API_URL = 'https://api.thecatapi.com/v1/breeds'
+//const API_URL = 'https://api.thecatapi.com/v1/images/search?limit=67'
 // const apiKey = `1ef81c01-f0b1-4971-9655-2017bd4c6bfc`
 
 function App() {
@@ -14,8 +19,11 @@ function App() {
   // shopping cart
   const [cart, setCart] = useState([])
   const [page, setPage] = useState(PAGE_PRODUCTS)
+  const [product, setProduct] = useState(null)
   const [products, setProducts] = useState(null)
   const [isInputProductCost, setInputProductCost] = useState(false)
+  const [totalcost, setTotalCost] = useState(0)
+
   //fetch items
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -26,40 +34,52 @@ function App() {
 
   const fetchItems = async () => {
     fetch(API_URL)
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw response
-    })
-    .then(data => {
-      setProducts(data)
-    })
-    .catch(error => {
-      console.error("Error fetching data: ", error)
-      setError(error)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw response
+      })
+      .then(data => {
+        setProducts(data)
+      })
+      .catch(error => {
+        console.error("Error fetching data: ", error)
+        setError(error)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   const inputProductCost = (products) => {
-    const cost = Math.ceil(((Math.random() * (10 - 2)) + 2)) * 50
     products.map((product) => (
-      product.cost = cost
+      product.cost = Math.ceil(((Math.random() * (10 - 2)) + 2)) * 50
     ))
     setInputProductCost(true)
   }
 
+  const emptyCart = () => {
+    setCart([])
+    setTotalCost(0)
+    setPage(PAGE_PAYMENT)
+  }
+
   const addToCart = (product) => {
     setCart([...cart, product])
+    setTotalCost(totalcost + product.cost)
   }
 
   const removeFromCart = (productToRemove) => {
     setCart(
       cart.filter((product) => product !== productToRemove)
     )
+    setTotalCost(totalcost - productToRemove.cost)
+  }
+
+  const showCatInfo = (product) => {
+    setProduct(product)
+    setPage(PAGE_CATINFO)
   }
 
   const navigateTo = (nextPage) => {
@@ -85,12 +105,14 @@ function App() {
       <div className='products'></div>
       {/* Button can be replaced by nav bar */}
       <header>
-        <button onClick={() => navigateTo(PAGE_CART)}>Go to Cart({cart.length})</button>
-        <button onClick={() => navigateTo(PAGE_PRODUCTS)}>View Products</button>
+        <button onClick={() => navigateTo(PAGE_PRODUCTS)}>Product Selection</button>
+        <button onClick={() => navigateTo(PAGE_CART)}>Go to Shopping Cart({cart.length})</button>
       </header>
       {!isInputProductCost && inputProductCost(products)}
-      {page === PAGE_PRODUCTS && <Products products={products} addToCart={addToCart} />}
-      {page === PAGE_CART && <Cart cart={cart} removeFromCart={removeFromCart} />}
+      {page === PAGE_PRODUCTS && <Products products={products} showCatInfo={showCatInfo} addToCart={addToCart} />}
+      {page === PAGE_CART && <Cart cart={cart} totalcost={totalcost} removeFromCart={removeFromCart} emptyCart={emptyCart} />}
+      {page === PAGE_PAYMENT && <Payment />}
+      {page === PAGE_CATINFO && <CatInfo product={product} addToCart={addToCart} />}
     </div>
   );
 };
