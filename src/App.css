@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap');
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+=======
+>>>>>>> 747f9c1b3e8186cd34eef2a0ae2c8032a8982e6d
 .wrapper {
   background:linear-gradient(rgba(0, 255, 255, 0.774) 50%, rgba(0, 0, 255, 0.705) 100%);
   display: flex;
@@ -66,8 +69,12 @@ height: 100px;
 transform: translate(-50%, -50%);
 left: 30%;
 top: 10%;
+<<<<<<< HEAD
 font-family: 'Sigmar One', cursive;
 /* font-family: 'El Messiri', sans-serif; */
+=======
+font-family: 'El Messiri', sans-serif;
+>>>>>>> 747f9c1b3e8186cd34eef2a0ae2c8032a8982e6d
 font-style: normal;
 font-weight: bold;
 font-size: 120px;
@@ -76,7 +83,11 @@ background: linear-gradient(180deg, rgba(255, 255, 255, 0.966) 50.21%, rgba(10, 
 background-clip: text;
 -webkit-text-fill-color: transparent;
 text-shadow: 0 20px 50px rgb(255, 255, 255);
+<<<<<<< HEAD
 -webkit-text-stroke:rgba(0, 0, 0, 0.65) 0.2px;
+=======
+-webkit-text-stroke:black 0.5px;
+>>>>>>> 747f9c1b3e8186cd34eef2a0ae2c8032a8982e6d
 z-index: 2;
 
 }
@@ -85,10 +96,16 @@ z-index: 2;
 position: absolute;
 width: 650px;
 transform: translate(-50%, -50%);
+<<<<<<< HEAD
 left: 26%;
 top: 24%;
 font-family: 'Sigmar One', cursive;
 /* font-family: 'El Messiri', sans-serif; */
+=======
+left: 20%;
+top: 21%;
+font-family: 'El Messiri', sans-serif;
+>>>>>>> 747f9c1b3e8186cd34eef2a0ae2c8032a8982e6d
 font-style: normal;
 font-weight: bold;
 font-size: 30px;
@@ -111,7 +128,11 @@ z-index: 2;
   background-size: cover;
   height: 100vh;
   width: 50vw;
+<<<<<<< HEAD
   box-shadow: 0 0 30px rgba(33, 0, 141, 0.589); 
+=======
+  box-shadow: 0 0 10px black; 
+>>>>>>> 747f9c1b3e8186cd34eef2a0ae2c8032a8982e6d
   z-index: 1;
 }
 .proudcts {
