@@ -17,7 +17,7 @@ const API_URL = 'https://api.thecatapi.com/v1/breeds'
 
 function App() {
 
-  // shopping cart
+  // shopping c art
   const [cart, setCart] = useState([])
   const [page, setPage] = useState(PAGE_PRODUCTS)
   const [product, setProduct] = useState(null)
